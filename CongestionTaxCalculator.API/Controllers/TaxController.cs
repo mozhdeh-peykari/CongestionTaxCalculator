@@ -20,19 +20,20 @@ namespace CongestionTaxCalculator.API.Controllers
             _taxService = taxService;
         }
 
-        public async Task<int> Get(GetTaxRequest request)
+        [HttpGet]
+        public async Task<int> Get(int vehicleId,[FromQuery] List<DateTime> passes)
         {
-            if (request.VehicleId == 0)
+            if (vehicleId == 0)
                 throw new ArgumentException("VehicleId cannot be 0");
 
-            var vehicle = await _vehicleRepository.GetByIdAsync(request.VehicleId);
+            var vehicle = await _vehicleRepository.GetByIdAsync(vehicleId);
             if (vehicle == null)
                 throw new ArgumentException("Invalid VehicleId");
 
             if (vehicle.VehicleType.IsTaxExempt)
                 return 0;
 
-            return await _taxService.CalculateCongestionTax(request.Passes);
+            return await _taxService.CalculateCongestionTax(passes);
         }
     }
 }
