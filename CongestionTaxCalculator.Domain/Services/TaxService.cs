@@ -1,11 +1,6 @@
 ﻿using CongestionTaxCalculator.Domain.Entities;
 using CongestionTaxCalculator.Domain.Interfaces.Repositories;
 using CongestionTaxCalculator.Domain.Interfaces.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CongestionTaxCalculator.Domain.Services
 {
@@ -13,15 +8,12 @@ namespace CongestionTaxCalculator.Domain.Services
     {
         private const int MaxDailyTax = 60; //TODO: set in appsettings
 
-        private readonly IVehicleRepository _vehicleRepository;
         private readonly ITaxRuleRepository _taxRuleRepository;
         private readonly ITaxExemptionRepository _taxExemptionRepository;
 
-        public TaxService(IVehicleRepository vehicleRepository,
-            ITaxRuleRepository taxRuleRepository,
+        public TaxService(ITaxRuleRepository taxRuleRepository,
             ITaxExemptionRepository taxExemptionRepository)
         {
-            _vehicleRepository = vehicleRepository;
             _taxRuleRepository = taxRuleRepository;
             _taxExemptionRepository = taxExemptionRepository;
         }
@@ -81,6 +73,7 @@ namespace CongestionTaxCalculator.Domain.Services
                     return rule.Amount;
                 }
             }
+
             return 0;
         }
     }

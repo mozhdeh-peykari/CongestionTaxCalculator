@@ -20,10 +20,6 @@ namespace CongestionTaxCalculator.Extensions
             services.AddScoped<ITaxExemptionRepository, TaxExemptionRepository>();
             services.AddScoped<ITaxRuleRepository, TaxRuleRepository>();
 
-
-            //var connectionString = configuration.GetConnectionString("DefaultConnection");
-            //services.AddDbContext<CongestionTaxCalculator>(options =>
-            //    options.UseSqlServer(connectionString));
             return services;
         }
     }

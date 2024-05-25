@@ -1,9 +1,6 @@
-﻿using CongestionTaxCalculator.API.Models;
-using CongestionTaxCalculator.Domain.Entities;
-using CongestionTaxCalculator.Domain.Interfaces.Repositories;
+﻿using CongestionTaxCalculator.Domain.Interfaces.Repositories;
 using CongestionTaxCalculator.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
 
 namespace CongestionTaxCalculator.API.Controllers
 {
@@ -21,7 +18,7 @@ namespace CongestionTaxCalculator.API.Controllers
         }
 
         [HttpGet]
-        public async Task<int> Get(int vehicleId,[FromQuery] List<DateTime> passes)
+        public async Task<int> Get(int vehicleId, [FromQuery] List<DateTime> passes)
         {
             if (vehicleId == 0)
                 throw new ArgumentException("VehicleId cannot be 0");
